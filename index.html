@@ -208,6 +208,46 @@
             background: #f9f9f9;
         }
 
+        /* Mobile-friendly table styles */
+        @media (max-width: 640px) {
+            .results-table {
+                display: block;
+                overflow-x: visible;
+            }
+
+            .results-table thead {
+                display: none;
+            }
+
+            .results-table tbody {
+                display: block;
+            }
+
+            .results-table tr {
+                display: block;
+                margin-bottom: 15px;
+                border: 2px solid #667eea;
+                border-radius: 8px;
+                padding: 10px;
+                background: #f9f9f9;
+            }
+
+            .results-table td {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 10px;
+                border: none;
+                text-align: right;
+            }
+
+            .results-table td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                color: #667eea;
+                text-align: left;
+            }
+        }
+
         .final-result {
             text-align: center;
             padding: 20px;
@@ -235,16 +275,81 @@
         .fail { background: #ef4444; }
 
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
             header h1 {
                 font-size: 1.8em;
             }
 
+            header p {
+                font-size: 1em;
+            }
+
             .subjects-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .subject-card {
+                padding: 15px;
+            }
+
+            .subject-title {
+                font-size: 1.1em;
+            }
+
+            .subject-controls {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .input-group input {
+                padding: 12px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .results {
+                padding: 20px;
+            }
+
+            .results h2 {
+                font-size: 1.5em;
+            }
+
+            .final-result {
+                padding: 15px;
+            }
+
+            .final-average {
+                font-size: 2.5em;
+            }
+
+            .pass-status {
+                font-size: 1.2em;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .subject-card {
+                padding: 12px;
+            }
+
+            .subject-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
 
             .results-table {
-                font-size: 0.9em;
+                font-size: 0.8em;
             }
 
             .final-average {
@@ -502,10 +607,10 @@
 
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${subject.name}</td>
-                    <td><strong>${avg.toFixed(2)}</strong>/20</td>
-                    <td>${subject.coeff}</td>
-                    <td>${weighted.toFixed(2)}</td>
+                    <td data-label="Subject">${subject.name}</td>
+                    <td data-label="Average"><strong>${avg.toFixed(2)}</strong>/20</td>
+                    <td data-label="Coefficient">${subject.coeff}</td>
+                    <td data-label="Weighted Score">${weighted.toFixed(2)}</td>
                 `;
                 tbody.appendChild(row);
             });
