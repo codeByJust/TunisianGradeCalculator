@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunisian Grade Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .subject-card.disabled {
+            opacity: 0.5;
+        }
+
+        .subject-card.disabled .exam-inputs {
+            pointer-events: none;
+        }
+
+        .subject-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .subject-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .subject-coeff {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .subject-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .subject-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .subject-checkbox input[type="checkbox"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .total-only-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .total-only-toggle input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .exam-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-group label {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .subject-average {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .avg-value {
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .avg-green { color: #10b981; }
+        .avg-yellow { color: #f59e0b; }
+        .avg-red { color: #ef4444; }
+
+        .results {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .results h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .results-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .results-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .final-result {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .final-average {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .pass-status {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .pass { background: #10b981; }
+        .fail { background: #ef4444; }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-table {
+                font-size: 0.9em;
+            }
+
+            .final-average {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Tunisian Grade Calculator</h1>
+            <p>Calculate your high school averages (/20)</p>
+        </header>
+
+        <div class="subjects-grid" id="subjectsGrid"></div>
+
+        <div class="results">
+            <h2>📊 Results Summary</h2>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Average</th>
+                        <th>Coefficient</th>
+                        <th>Weighted Score</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody"></tbody>
+            </table>
+
+            <div class="final-result">
+                <p style="font-size: 1.2em;">Final Average</p>
+                <div class="final-average" id="finalAverage">0.00</div>
+                <div class="pass-status" id="passStatus">--</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Subject configurations
+        const subjects = [
+            { name: 'Math', coeff: 3, exams: ['Control', 'Synthèse'], weights: [1, 2] },
+            { name: 'Physics', coeff: 3, exams: ['Control', 'TP', 'Synthèse'], weights: [1, 1, 2] },
+            { name: 'STI', coeff: 3, exams: ['Control 1', 'Control 2', 'Synthèse'], weights: [1, 1, 2] },
+            { name: 'Programming', coeff: 3, exams: ['Control 1', 'Control 2', 'Synthèse'], weights: [1, 1, 2] },
+            { name: 'English', coeff: 2, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] },
+            { name: 'French', coeff: 2, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] },
+            { name: 'Arabic', coeff: 2, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] },
+            { name: 'Philosophy', coeff: 1, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] },
+            { name: 'Sport', coeff: 1, exams: ['Control', 'Synthèse'], weights: [1, 2] },
+            { name: 'Option', coeff: 1, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] }
+        ];
+
+        // State management
+        let subjectStates = {};
+
+        // Initialize the app
+        function init() {
+            subjects.forEach(subject => {
+                subjectStates[subject.name] = {
+                    enabled: true,
+                    totalOnlyMode: false,
+                    grades: {},
+                    average: 0
+                };
+            });
+            renderSubjects();
+            calculate();
+        }
+
+        // Render subject cards
+        function renderSubjects() {
+            const grid = document.getElementById('subjectsGrid');
+            grid.innerHTML = '';
+
+            subjects.forEach(subject => {
+                const card = document.createElement('div');
+                card.className = 'subject-card';
+                card.id = `card-${subject.name}`;
+
+                const state = subjectStates[subject.name];
+                const totalOnlyMode = state.totalOnlyMode;
+
+                let examsHTML = '';
+                if (totalOnlyMode) {
+                    examsHTML = `
+                        <div class="input-group">
+                            <label>Subject Average</label>
+                            <input type="number" 
+                                   min="0" 
+                                   max="20" 
+                                   step="0.01" 
+                                   data-subject="${subject.name}" 
+                                   data-exam="average"
+                                   value="${state.average || ''}"
+                                   placeholder="0.00">
+                        </div>
+                    `;
+                } else {
+                    subject.exams.forEach((exam, idx) => {
+                        const value = state.grades[exam] || '';
+                        examsHTML += `
+                            <div class="input-group">
+                                <label>${exam} (×${subject.weights[idx]})</label>
+                                <input type="number" 
+                                       min="0" 
+                                       max="20" 
+                                       step="0.01" 
+                                       data-subject="${subject.name}" 
+                                       data-exam="${exam}"
+                                       value="${value}"
+                                       placeholder="0.00">
+                            </div>
+                        `;
+                    });
+                }
+
+                card.innerHTML = `
+                    <div class="subject-header">
+                        <div class="subject-title">${subject.name}</div>
+                        <div class="subject-coeff">Coeff: ${subject.coeff}</div>
+                    </div>
+                    <div class="subject-controls">
+                        <div class="subject-checkbox">
+                            <input type="checkbox" id="check-${subject.name}" ${state.enabled ? 'checked' : ''}>
+                            <label for="check-${subject.name}">Include in calculation</label>
+                        </div>
+                        <div class="total-only-toggle">
+                            <input type="checkbox" id="total-${subject.name}" ${state.totalOnlyMode ? 'checked' : ''}>
+                            <label for="total-${subject.name}">Total Only</label>
+                        </div>
+                    </div>
+                    <div class="exam-inputs">
+                        ${examsHTML}
+                    </div>
+                    <div class="subject-average">
+                        Average: <span class="avg-value" id="avg-${subject.name}">0.00</span>/20
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            setupEventListeners();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Subject checkboxes
+            subjects.forEach(subject => {
+                const checkbox = document.getElementById(`check-${subject.name}`);
+                if (checkbox) {
+                    checkbox.addEventListener('change', (e) => {
+                        subjectStates[subject.name].enabled = e.target.checked;
+                        const card = document.getElementById(`card-${subject.name}`);
+                        card.classList.toggle('disabled', !e.target.checked);
+                        calculate();
+                    });
+                }
+
+                // Total only toggles for each subject
+                const totalToggle = document.getElementById(`total-${subject.name}`);
+                if (totalToggle) {
+                    totalToggle.addEventListener('change', (e) => {
+                        subjectStates[subject.name].totalOnlyMode = e.target.checked;
+                        renderSubjects();
+                        calculate();
+                    });
+                }
+            });
+
+            // Grade inputs
+            document.querySelectorAll('input[type="number"]').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const subject = e.target.dataset.subject;
+                    const exam = e.target.dataset.exam;
+                    const value = parseFloat(e.target.value) || 0;
+                    
+                    if (exam === 'average') {
+                        subjectStates[subject].average = value;
+                    } else {
+                        subjectStates[subject].grades[exam] = value;
+                    }
+                    calculate();
+                });
+            });
+        }
+
+        // Calculate averages
+        function calculate() {
+            // Calculate each subject average
+            subjects.forEach(subject => {
+                const state = subjectStates[subject.name];
+                
+                if (!state.enabled) {
+                    state.average = 0;
+                    updateSubjectDisplay(subject.name, 0);
+                    return;
+                }
+
+                if (state.totalOnlyMode) {
+                    // Average already set directly
+                    updateSubjectDisplay(subject.name, state.average);
+                } else {
+                    const grades = state.grades;
+                    let totalWeighted = 0;
+                    let totalWeight = 0;
+
+                    subject.exams.forEach((exam, idx) => {
+                        const grade = grades[exam] || 0;
+                        const weight = subject.weights[idx];
+                        totalWeighted += grade * weight;
+                        totalWeight += weight;
+                    });
+
+                    state.average = totalWeight > 0 ? totalWeighted / totalWeight : 0;
+                    updateSubjectDisplay(subject.name, state.average);
+                }
+            });
+
+            // Calculate final average
+            updateResults();
+        }
+
+        // Update subject display
+        function updateSubjectDisplay(subjectName, avg) {
+            const avgElement = document.getElementById(`avg-${subjectName}`);
+            if (avgElement) {
+                avgElement.textContent = avg.toFixed(2);
+                
+                avgElement.className = 'avg-value';
+                if (avg >= 12) avgElement.classList.add('avg-green');
+                else if (avg >= 10) avgElement.classList.add('avg-yellow');
+                else avgElement.classList.add('avg-red');
+            }
+        }
+
+        // Update results table
+        function updateResults() {
+            const tbody = document.getElementById('resultsBody');
+            tbody.innerHTML = '';
+
+            let totalWeighted = 0;
+            let totalCoeff = 0;
+
+            subjects.forEach(subject => {
+                const state = subjectStates[subject.name];
+                if (!state.enabled) return;
+
+                const avg = state.average;
+                const weighted = avg * subject.coeff;
+                totalWeighted += weighted;
+                totalCoeff += subject.coeff;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${subject.name}</td>
+                    <td><strong>${avg.toFixed(2)}</strong>/20</td>
+                    <td>${subject.coeff}</td>
+                    <td>${weighted.toFixed(2)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // Final average
+            const finalAvg = totalCoeff > 0 ? totalWeighted / totalCoeff : 0;
+            document.getElementById('finalAverage').textContent = finalAvg.toFixed(2) + '/20';
+
+            // Pass/Fail status
+            const statusElement = document.getElementById('passStatus');
+            if (finalAvg >= 10) {
+                statusElement.textContent = '✓ PASS';
+                statusElement.className = 'pass-status pass';
+            } else {
+                statusElement.textContent = '✗ FAIL';
+                statusElement.className = 'pass-status fail';
+            }
+        }
+
+        // Start the app
+        init();
+    </script>
+</body>
+</html>
