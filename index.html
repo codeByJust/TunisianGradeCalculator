@@ -39,6 +39,89 @@
             opacity: 0.9;
         }
 
+        .landing-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            gap: 30px;
+        }
+
+        .tool-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .tool-card-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .tool-card h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .tool-card p {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .back-button:active {
+            transform: translateX(-3px) scale(0.98);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
         .subjects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -208,7 +291,6 @@
             background: #f9f9f9;
         }
 
-        /* Mobile-friendly table styles */
         @media (max-width: 640px) {
             .results-table {
                 display: block;
@@ -274,6 +356,335 @@
         .pass { background: #10b981; }
         .fail { background: #ef4444; }
 
+        .target-calculator {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .target-calculator h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .target-calculator p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .target-input-group {
+            margin-bottom: 20px;
+        }
+
+        .target-input-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .target-input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.2em;
+            transition: border-color 0.3s;
+        }
+
+        .target-input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .target-result {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f0f9ff;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .target-result h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .target-result .needed-grade {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .target-result .status-message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Trimester Calculator Styles */
+        .trimester-calculator {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .trimester-calculator h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .trimester-calculator p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .trimester-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .trimester-input-group {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e5e7eb;
+        }
+
+        .trimester-input-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .trimester-input-group input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: border-color 0.3s;
+        }
+
+        .trimester-input-group input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .slider-container {
+            margin-top: 15px;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .slider-wrapper input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #ef4444 0%, #f59e0b 50%, #10b981 100%);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-wrapper input[type="number"] {
+            width: 80px;
+            padding: 8px 12px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .slider-wrapper input[type="number"]:focus {
+            outline: none;
+            border-color: #764ba2;
+            background: #f0f9ff;
+        }
+
+        .slider-wrapper input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .slider-wrapper input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .slider-value {
+            min-width: 80px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            display: none; /* Hide the display-only value */
+        }
+
+        .formula-display {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .formula-display h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .formula-text {
+            font-family: 'Courier New', monospace;
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .yearly-result {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        .yearly-result h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .yearly-average {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .achievable-status {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .achievable-yes {
+            background: #10b981;
+        }
+
+        .achievable-no {
+            background: #ef4444;
+        }
+
+        .achievable-warning {
+            background: #f59e0b;
+        }
+
+        @media (max-width: 768px) {
+            .trimester-calculator {
+                padding: 20px;
+                margin-top: 60px;
+            }
+
+            .trimester-calculator h2 {
+                font-size: 1.5em;
+            }
+
+            .slider-wrapper {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .slider-wrapper input[type="number"] {
+                width: 100%;
+            }
+
+            .yearly-average {
+                font-size: 2.5em;
+            }
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -283,59 +694,85 @@
                 font-size: 1.8em;
             }
 
-            header p {
-                font-size: 1em;
+            .tool-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .back-button {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                padding: 10px 16px;
+                font-size: 0.9em;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
 
             .subjects-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
+                margin-top: 60px;
             }
 
             .subject-card {
                 padding: 15px;
             }
 
-            .subject-title {
-                font-size: 1.1em;
-            }
-
-            .subject-controls {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-
             .input-group input {
                 padding: 12px;
-                font-size: 16px; /* Prevents zoom on iOS */
+                font-size: 16px;
             }
 
             .results {
                 padding: 20px;
-            }
-
-            .results h2 {
-                font-size: 1.5em;
-            }
-
-            .final-result {
-                padding: 15px;
+                margin-top: 20px;
             }
 
             .final-average {
                 font-size: 2.5em;
             }
 
-            .pass-status {
-                font-size: 1.2em;
-                padding: 8px 16px;
+            .target-calculator {
+                padding: 20px;
+                margin-top: 60px;
             }
         }
 
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.5em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            .back-button {
+                position: fixed;
+                top: 8px;
+                left: 8px;
+                padding: 8px 12px;
+                font-size: 0.85em;
+                border-radius: 6px;
+            }
+
+            .tool-card {
+                padding: 25px 15px;
+            }
+
+            .tool-card-icon {
+                font-size: 3em;
+            }
+
+            .tool-card h2 {
+                font-size: 1.3em;
+            }
+
+            .tool-card p {
+                font-size: 0.9em;
+            }
+
+            .subjects-grid {
+                margin-top: 50px;
             }
 
             .subject-card {
@@ -348,11 +785,23 @@
                 gap: 8px;
             }
 
-            .results-table {
-                font-size: 0.8em;
+            .final-average {
+                font-size: 2em;
             }
 
-            .final-average {
+            .target-calculator {
+                margin-top: 50px;
+            }
+
+            .target-calculator h2 {
+                font-size: 1.4em;
+            }
+
+            .target-calculator p {
+                font-size: 0.9em;
+            }
+
+            .target-result .needed-grade {
                 font-size: 2em;
             }
         }
@@ -365,32 +814,104 @@
             <p>Calculate your high school averages (/20)</p>
         </header>
 
-        <div class="subjects-grid" id="subjectsGrid"></div>
+        <div id="landingPage" class="landing-page">
+            <div class="tool-buttons">
+                <div class="tool-card" id="calcBtn">
+                    <div class="tool-card-icon">🧮</div>
+                    <h2>Grade Calculator</h2>
+                    <p>Calculate your final average based on all your exam scores</p>
+                </div>
+                <div class="tool-card" id="trimesterBtn">
+                    <div class="tool-card-icon">📈</div>
+                    <h2>Trimester Planner</h2>
+                    <p>Plan your T2 & T3 grades to reach your yearly target</p>
+                </div>
+            </div>
+        </div>
 
-        <div class="results">
-            <h2>📊 Results Summary</h2>
-            <table class="results-table">
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>Average</th>
-                        <th>Coefficient</th>
-                        <th>Weighted Score</th>
-                    </tr>
-                </thead>
-                <tbody id="resultsBody"></tbody>
-            </table>
+        <button class="back-button hidden" id="backButton">← Back</button>
 
-            <div class="final-result">
-                <p style="font-size: 1.2em;">Final Average</p>
-                <div class="final-average" id="finalAverage">0.00</div>
-                <div class="pass-status" id="passStatus">--</div>
+        <div id="calculatorSection" class="hidden">
+            <div class="subjects-grid" id="subjectsGrid"></div>
+            <div class="results">
+                <h2>📊 Results Summary</h2>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Average</th>
+                            <th>Coefficient</th>
+                            <th>Weighted Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody"></tbody>
+                </table>
+                <div class="final-result">
+                    <p style="font-size: 1.2em;">Final Average</p>
+                    <div class="final-average" id="finalAverage">0.00</div>
+                    <div class="pass-status" id="passStatus">--</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="targetSection" class="hidden" style="display: none;">
+            <!-- Removed section -->
+        </div>
+
+        <div id="trimesterSection" class="hidden">
+            <div class="trimester-calculator">
+                <h2>📈 Trimester Planner</h2>
+                <p>Plan your Trimester 2 & 3 grades to reach your yearly target average.</p>
+                
+                <div class="trimester-inputs">
+                    <div class="trimester-input-group">
+                        <label for="t1Input">Trimester 1 Average (Coefficient: 1)</label>
+                        <input type="number" id="t1Input" step="0.01" placeholder="e.g., 12.5">
+                    </div>
+
+                    <div class="trimester-input-group">
+                        <label for="targetYearInput">Target Yearly Average</label>
+                        <input type="number" id="targetYearInput" step="0.01" placeholder="e.g., 10.0">
+                    </div>
+
+                    <div class="trimester-input-group">
+                        <label>Trimester 2 Average (Coefficient: 2)</label>
+                        <div class="slider-container">
+                            <div class="slider-wrapper">
+                                <input type="range" id="t2Slider" min="0" max="20" step="0.01" value="10">
+                                <input type="number" id="t2Input" step="0.01" value="10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trimester-input-group">
+                        <label>Trimester 3 Average (Coefficient: 2)</label>
+                        <div class="slider-container">
+                            <div class="slider-wrapper">
+                                <input type="range" id="t3Slider" min="0" max="20" step="0.01" value="10">
+                                <input type="number" id="t3Input" step="0.01" value="10">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formula-display">
+                    <h3>Formula:</h3>
+                    <div class="formula-text" id="formulaText">
+                        Yearly Average = (T1×1 + T2×2 + T3×2) ÷ 5
+                    </div>
+                </div>
+
+                <div class="yearly-result">
+                    <h3>Projected Yearly Average</h3>
+                    <div class="yearly-average" id="yearlyAverage">0.00/20</div>
+                    <div class="achievable-status" id="achievableStatus">Enter values above</div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Subject configurations
         const subjects = [
             { name: 'Math', coeff: 3, exams: ['Control', 'Synthèse'], weights: [1, 2] },
             { name: 'Physics', coeff: 3, exams: ['Control', 'TP', 'Synthèse'], weights: [1, 1, 2] },
@@ -400,14 +921,58 @@
             { name: 'French', coeff: 2, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] },
             { name: 'Arabic', coeff: 2, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] },
             { name: 'Philosophy', coeff: 1, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] },
+            { name: 'History', coeff: 1, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] },
+            { name: 'Geography', coeff: 1, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] },
             { name: 'Sport', coeff: 1, exams: ['Control', 'Synthèse'], weights: [1, 2] },
             { name: 'Option', coeff: 1, exams: ['Control', 'Oral', 'Synthèse'], weights: [1, 1, 2] }
         ];
 
-        // State management
         let subjectStates = {};
 
-        // Initialize the app
+        // Event listeners
+        document.getElementById('calcBtn').addEventListener('click', showCalculator);
+        document.getElementById('trimesterBtn').addEventListener('click', showTrimesterCalculator);
+        document.getElementById('backButton').addEventListener('click', showLanding);
+
+        // Trimester calculator listeners
+        document.getElementById('t1Input').addEventListener('input', autoCalculateTrimesters);
+        document.getElementById('targetYearInput').addEventListener('input', autoCalculateTrimesters);
+        document.getElementById('t2Slider').addEventListener('input', handleT2SliderChange);
+        document.getElementById('t3Slider').addEventListener('input', handleT3SliderChange);
+        document.getElementById('t2Input').addEventListener('input', handleT2InputChange);
+        document.getElementById('t3Input').addEventListener('input', handleT3InputChange);
+
+        let lastChangedSlider = 't2'; // Track which slider was changed last
+
+        function showLanding() {
+            document.getElementById('landingPage').classList.remove('hidden');
+            document.getElementById('calculatorSection').classList.add('hidden');
+            document.getElementById('trimesterSection').classList.add('hidden');
+            document.getElementById('backButton').classList.add('hidden');
+        }
+
+        function showCalculator() {
+            document.getElementById('landingPage').classList.add('hidden');
+            document.getElementById('calculatorSection').classList.remove('hidden');
+            document.getElementById('trimesterSection').classList.add('hidden');
+            document.getElementById('backButton').classList.remove('hidden');
+            
+            if (Object.keys(subjectStates).length === 0) {
+                init();
+            }
+        }
+
+        function showTrimesterCalculator() {
+            document.getElementById('landingPage').classList.add('hidden');
+            document.getElementById('calculatorSection').classList.add('hidden');
+            document.getElementById('trimesterSection').classList.remove('hidden');
+            document.getElementById('backButton').classList.remove('hidden');
+        }
+
+        function calculateNeeded() {
+            // Removed function
+        }
+
         function init() {
             subjects.forEach(subject => {
                 subjectStates[subject.name] = {
@@ -421,7 +986,6 @@
             calculate();
         }
 
-        // Render subject cards
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
             grid.innerHTML = '';
@@ -432,39 +996,14 @@
                 card.id = `card-${subject.name}`;
 
                 const state = subjectStates[subject.name];
-                const totalOnlyMode = state.totalOnlyMode;
-
                 let examsHTML = '';
-                if (totalOnlyMode) {
-                    examsHTML = `
-                        <div class="input-group">
-                            <label>Subject Average</label>
-                            <input type="number" 
-                                   min="0" 
-                                   max="20" 
-                                   step="0.01" 
-                                   data-subject="${subject.name}" 
-                                   data-exam="average"
-                                   value="${state.average || ''}"
-                                   placeholder="0.00">
-                        </div>
-                    `;
+
+                if (state.totalOnlyMode) {
+                    examsHTML = `<div class="input-group"><label>Subject Average</label><input type="number" min="0" max="20" step="0.01" data-subject="${subject.name}" data-exam="average" value="${state.average || ''}" placeholder="0.00"></div>`;
                 } else {
                     subject.exams.forEach((exam, idx) => {
                         const value = state.grades[exam] || '';
-                        examsHTML += `
-                            <div class="input-group">
-                                <label>${exam} (×${subject.weights[idx]})</label>
-                                <input type="number" 
-                                       min="0" 
-                                       max="20" 
-                                       step="0.01" 
-                                       data-subject="${subject.name}" 
-                                       data-exam="${exam}"
-                                       value="${value}"
-                                       placeholder="0.00">
-                            </div>
-                        `;
+                        examsHTML += `<div class="input-group"><label>${exam} (×${subject.weights[idx]})</label><input type="number" min="0" max="20" step="0.01" data-subject="${subject.name}" data-exam="${exam}" value="${value}" placeholder="0.00"></div>`;
                     });
                 }
 
@@ -476,19 +1015,15 @@
                     <div class="subject-controls">
                         <div class="subject-checkbox">
                             <input type="checkbox" id="check-${subject.name}" ${state.enabled ? 'checked' : ''}>
-                            <label for="check-${subject.name}">Include in calculation</label>
+                            <label for="check-${subject.name}">Include</label>
                         </div>
                         <div class="total-only-toggle">
                             <input type="checkbox" id="total-${subject.name}" ${state.totalOnlyMode ? 'checked' : ''}>
                             <label for="total-${subject.name}">Total Only</label>
                         </div>
                     </div>
-                    <div class="exam-inputs">
-                        ${examsHTML}
-                    </div>
-                    <div class="subject-average">
-                        Average: <span class="avg-value" id="avg-${subject.name}">0.00</span>/20
-                    </div>
+                    <div class="exam-inputs">${examsHTML}</div>
+                    <div class="subject-average">Average: <span class="avg-value" id="avg-${subject.name}">0.00</span>/20</div>
                 `;
 
                 grid.appendChild(card);
@@ -497,21 +1032,17 @@
             setupEventListeners();
         }
 
-        // Setup event listeners
         function setupEventListeners() {
-            // Subject checkboxes
             subjects.forEach(subject => {
                 const checkbox = document.getElementById(`check-${subject.name}`);
                 if (checkbox) {
                     checkbox.addEventListener('change', (e) => {
                         subjectStates[subject.name].enabled = e.target.checked;
-                        const card = document.getElementById(`card-${subject.name}`);
-                        card.classList.toggle('disabled', !e.target.checked);
+                        document.getElementById(`card-${subject.name}`).classList.toggle('disabled', !e.target.checked);
                         calculate();
                     });
                 }
 
-                // Total only toggles for each subject
                 const totalToggle = document.getElementById(`total-${subject.name}`);
                 if (totalToggle) {
                     totalToggle.addEventListener('change', (e) => {
@@ -522,7 +1053,6 @@
                 }
             });
 
-            // Grade inputs
             document.querySelectorAll('input[type="number"]').forEach(input => {
                 input.addEventListener('input', (e) => {
                     const subject = e.target.dataset.subject;
@@ -539,9 +1069,7 @@
             });
         }
 
-        // Calculate averages
         function calculate() {
-            // Calculate each subject average
             subjects.forEach(subject => {
                 const state = subjectStates[subject.name];
                 
@@ -552,7 +1080,6 @@
                 }
 
                 if (state.totalOnlyMode) {
-                    // Average already set directly
                     updateSubjectDisplay(subject.name, state.average);
                 } else {
                     const grades = state.grades;
@@ -571,16 +1098,13 @@
                 }
             });
 
-            // Calculate final average
             updateResults();
         }
 
-        // Update subject display
         function updateSubjectDisplay(subjectName, avg) {
             const avgElement = document.getElementById(`avg-${subjectName}`);
             if (avgElement) {
                 avgElement.textContent = avg.toFixed(2);
-                
                 avgElement.className = 'avg-value';
                 if (avg >= 12) avgElement.classList.add('avg-green');
                 else if (avg >= 10) avgElement.classList.add('avg-yellow');
@@ -588,7 +1112,6 @@
             }
         }
 
-        // Update results table
         function updateResults() {
             const tbody = document.getElementById('resultsBody');
             tbody.innerHTML = '';
@@ -615,11 +1138,9 @@
                 tbody.appendChild(row);
             });
 
-            // Final average
             const finalAvg = totalCoeff > 0 ? totalWeighted / totalCoeff : 0;
             document.getElementById('finalAverage').textContent = finalAvg.toFixed(2) + '/20';
 
-            // Pass/Fail status
             const statusElement = document.getElementById('passStatus');
             if (finalAvg >= 10) {
                 statusElement.textContent = '✓ PASS';
@@ -630,8 +1151,166 @@
             }
         }
 
-        // Start the app
-        init();
+        // Trimester Calculator Functions
+        function handleT2SliderChange() {
+            lastChangedSlider = 't2';
+            const t2Value = parseFloat(document.getElementById('t2Slider').value);
+            document.getElementById('t2Input').value = t2Value.toFixed(1);
+            adjustT3BasedOnT2();
+        }
+
+        function handleT3SliderChange() {
+            lastChangedSlider = 't3';
+            const t3Value = parseFloat(document.getElementById('t3Slider').value);
+            document.getElementById('t3Input').value = t3Value.toFixed(1);
+            adjustT2BasedOnT3();
+        }
+
+        function handleT2InputChange() {
+            lastChangedSlider = 't2';
+            let t2Value = parseFloat(document.getElementById('t2Input').value);
+            
+            // Don't clamp the input field - allow any value
+            if (isNaN(t2Value)) t2Value = 0;
+            
+            // Update slider (clamped to 0-20 for visual display)
+            const sliderValue = Math.max(0, Math.min(20, t2Value));
+            document.getElementById('t2Slider').value = sliderValue;
+            
+            adjustT3BasedOnT2();
+        }
+
+        function handleT3InputChange() {
+            lastChangedSlider = 't3';
+            let t3Value = parseFloat(document.getElementById('t3Input').value);
+            
+            // Don't clamp the input field - allow any value
+            if (isNaN(t3Value)) t3Value = 0;
+            
+            // Update slider (clamped to 0-20 for visual display)
+            const sliderValue = Math.max(0, Math.min(20, t3Value));
+            document.getElementById('t3Slider').value = sliderValue;
+            
+            adjustT2BasedOnT3();
+        }
+
+        function adjustT3BasedOnT2() {
+            const t1 = parseFloat(document.getElementById('t1Input').value) || 0;
+            const target = parseFloat(document.getElementById('targetYearInput').value) || 0;
+            const t2 = parseFloat(document.getElementById('t2Input').value) || 0;
+
+            if (!t1 || !target) {
+                updateTrimesterCalculations();
+                return;
+            }
+
+            // Calculate required T3: T3 = (5×Target − T1 − 2×T2) ÷ 2
+            const requiredT3 = (5 * target - t1 - 2 * t2) / 2;
+            
+            // Update T3 input (no clamping)
+            document.getElementById('t3Input').value = requiredT3.toFixed(1);
+            
+            // Update T3 slider (clamped for visual)
+            const clampedT3 = Math.max(0, Math.min(20, requiredT3));
+            document.getElementById('t3Slider').value = clampedT3;
+            
+            updateTrimesterCalculations();
+        }
+
+        function adjustT2BasedOnT3() {
+            const t1 = parseFloat(document.getElementById('t1Input').value) || 0;
+            const target = parseFloat(document.getElementById('targetYearInput').value) || 0;
+            const t3 = parseFloat(document.getElementById('t3Input').value) || 0;
+
+            if (!t1 || !target) {
+                updateTrimesterCalculations();
+                return;
+            }
+
+            // Calculate required T2: T2 = (5×Target − T1 − 2×T3) ÷ 2
+            const requiredT2 = (5 * target - t1 - 2 * t3) / 2;
+            
+            // Update T2 input (no clamping)
+            document.getElementById('t2Input').value = requiredT2.toFixed(1);
+            
+            // Update T2 slider (clamped for visual)
+            const clampedT2 = Math.max(0, Math.min(20, requiredT2));
+            document.getElementById('t2Slider').value = clampedT2;
+            
+            updateTrimesterCalculations();
+        }
+
+        function autoCalculateTrimesters() {
+            const t1 = parseFloat(document.getElementById('t1Input').value) || 0;
+            const target = parseFloat(document.getElementById('targetYearInput').value) || 0;
+
+            if (!t1 || !target) {
+                updateTrimesterCalculations();
+                return;
+            }
+
+            // Calculate equal T2 and T3 to reach target
+            // Formula: (T1 + 2×T2 + 2×T3) ÷ 5 = Target
+            // If T2 = T3, then: (T1 + 4×T2) ÷ 5 = Target
+            // Solving for T2: T2 = (5×Target - T1) ÷ 4
+            const equalValue = (5 * target - t1) / 4;
+            const clampedValue = Math.max(0, Math.min(20, equalValue));
+
+            document.getElementById('t2Slider').value = clampedValue;
+            document.getElementById('t2Input').value = clampedValue.toFixed(1);
+            document.getElementById('t3Slider').value = clampedValue;
+            document.getElementById('t3Input').value = clampedValue.toFixed(1);
+
+            updateTrimesterCalculations();
+        }
+
+        function updateTrimesterCalculations() {
+            const t1 = parseFloat(document.getElementById('t1Input').value) || 0;
+            const target = parseFloat(document.getElementById('targetYearInput').value) || 0;
+            const t2 = parseFloat(document.getElementById('t2Slider').value) || 0;
+            const t3 = parseFloat(document.getElementById('t3Slider').value) || 0;
+
+            // Calculate current yearly average
+            const yearlyAvg = (t1 * 1 + t2 * 2 + t3 * 2) / 5;
+
+            // Update display
+            document.getElementById('yearlyAverage').textContent = yearlyAvg.toFixed(2) + '/20';
+            
+            // Update formula with actual values
+            document.getElementById('formulaText').textContent = 
+                `(${t1.toFixed(1)}×1 + ${t2.toFixed(1)}×2 + ${t3.toFixed(1)}×2) ÷ 5 = ${yearlyAvg.toFixed(2)}`;
+
+            // Determine achievability status
+            const statusDiv = document.getElementById('achievableStatus');
+            
+            if (!t1 || !target) {
+                statusDiv.textContent = 'Enter T1 and Target values';
+                statusDiv.className = 'achievable-status achievable-warning';
+                return;
+            }
+
+            // Check if target is achievable
+            const maxPossible = (t1 * 1 + 20 * 2 + 20 * 2) / 5;
+            const minPossible = (t1 * 1 + 0 * 2 + 0 * 2) / 5;
+
+            if (target > maxPossible) {
+                statusDiv.textContent = '❌ Target Not Achievable (Even with 20/20 in T2 & T3)';
+                statusDiv.className = 'achievable-status achievable-no';
+            } else if (target < minPossible) {
+                statusDiv.textContent = '✅ Target Already Exceeded!';
+                statusDiv.className = 'achievable-status achievable-yes';
+            } else if (Math.abs(yearlyAvg - target) < 0.1) {
+                statusDiv.textContent = '🎯 Target Reached!';
+                statusDiv.className = 'achievable-status achievable-yes';
+            } else if (yearlyAvg >= target) {
+                statusDiv.textContent = '✅ Target Exceeded!';
+                statusDiv.className = 'achievable-status achievable-yes';
+            } else {
+                const diff = target - yearlyAvg;
+                statusDiv.textContent = `📊 ${diff.toFixed(2)} points below target - Adjust sliders`;
+                statusDiv.className = 'achievable-status achievable-warning';
+            }
+        }
     </script>
 </body>
 </html>
